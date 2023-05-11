@@ -7,7 +7,9 @@ def main():
     api_key = 'AIzaSyBJdpWQ8WkqgqlDeTyKuy4b25CDjYWW5_Y'
     location = '50.1109,8.6821'  # Frankfurt latitude and longitude
     radius = 9999  # 9999 meters radius
-    keywords = ['bank', 'asset', 'versicherung', 'insurance', 'invest', 'fund', 'credit', 'börse', 'stock']
+    keywords = ['bank', 'asset', 'versicherung', 'insurance', 'invest', 'fund', 'credit', 'börse', 'stock',
+    'Aktie', 'Devise', 'Finanzinstitut', 'Kredit', 'banking', 'Wertpapier', 'Vermögen', 'Anleihe', 'Hedge',
+    'Versicherung', 'Private Equity', 'Anlageberatung', 'Invest']
     ###
 
     results = []
@@ -18,6 +20,7 @@ def main():
         # Make a request to the Places API
         response = requests.get(url)
         data = response.json()
+        print(data)
 
         # Process the API response
         if data['status'] == 'OK':
@@ -25,6 +28,9 @@ def main():
             for place in places:
                 name = place['name']
                 address = place['vicinity']
+                #description = place['editorial_summary']
+                #google_url = place['url']
+                #website = place['website']
                 results.append({'Name': name, 'Address': address, 'Keyword': keyword})
                 print(f'Name: {name}', f'Address: {address}')
         else:
